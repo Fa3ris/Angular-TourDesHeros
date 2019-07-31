@@ -1,0 +1,41 @@
+<h2>Mes Héros</h2>
+
+<div>
+    <label>Nom du héros :
+        <input #heroName />
+    </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(heroName.value); heroName.value=''">
+        add
+    </button>
+</div>
+
+
+<ul class="heroes">
+    <li *ngFor="let hero of heroes">
+        <!--(click)="onSelect(hero)" [class.selected] = "hero === selectedHero"-->
+        <!-- repeater directive DO NOT forget *  -->
+        <!-- event binding -->
+
+        <a routerLink="/detail/{{hero.id}}">
+            <span class="badge">{{hero.id}}</span> {{hero.name | uppercase}}
+        </a>
+        <button class="delete" title="delete hero" (click)="delete(hero)">supprimer</button>
+    </li>
+    
+    
+    
+    <li>
+        <span class="badge">{{hero.id}}</span> {{hero.name | uppercase}}
+    </li>
+
+</ul>
+
+<!--app-hero-detail [hero]="selectedHero"></app-hero-detail-->
+
+<h2>{{hero.name | uppercase}} détails</h2> <!-- '|' => pipe, uppercase => UppercasePipe -->
+<div><span>ID : </span>{{hero.id}}</div>
+<div>
+    <label for="name">nom : </label>
+    <input [(ngModel)]="hero.name" placeholder="héros Windstorm" />
+</div>

@@ -1,0 +1,16 @@
+<div id="search-component">
+    <h4><label for="search-box">Recherche de héros</label></h4>
+  
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    <!-- #searchbox == template reference variable -->
+  
+    <ul class="search-result">
+      <li *ngFor="let hero of heroes$ | async" >
+          <!-- heroes$ : $ - convention pour indiquer qu'il s'agit d'un Observable<Hero[]>-->
+            <!-- async : AsyncPipe - permet à *ngFor de souscrire à l'Observable directement dans le template et non le component -->
+        <a routerLink="/detail/{{hero.id}}">
+          {{hero.name}}
+        </a>
+      </li>
+    </ul>
+  </div>
